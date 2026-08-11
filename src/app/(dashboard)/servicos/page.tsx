@@ -154,7 +154,7 @@ export default function ServicosPage() {
 
       {/* Conteúdo da Tabela */}
       {loading ? (
-        <LoadingState label="Carregando catálogo de serviços..." />
+        <LoadingState message="Carregando catálogo de serviços..." />
       ) : services.length === 0 ? (
         <EmptyState
           icon={<Wrench className="w-10 h-10" />}

@@ -135,7 +135,7 @@ export default function CustomerDetailPage() {
   if (loading) {
     return (
       <div className="bg-slate-900 border border-slate-800 rounded-2xl p-12 my-6">
-        <LoadingState label="Buscando informações do cliente..." />
+        <LoadingState message="Buscando informações do cliente..." />
       </div>
     );
   }

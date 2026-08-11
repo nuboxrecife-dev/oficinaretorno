@@ -194,7 +194,7 @@ export default function RetornosPage() {
 
       {/* Tabela de Retornos */}
       {loading ? (
-        <LoadingState label="Carregando fila de retornos..." />
+        <LoadingState message="Carregando fila de retornos..." />
       ) : returns.length === 0 ? (
         <EmptyState
           icon={<RotateCcw className="w-10 h-10" />}

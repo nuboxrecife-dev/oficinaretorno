@@ -144,7 +144,7 @@ export default function VehicleDetailPage() {
   if (loading) {
     return (
       <div className="bg-slate-900 border border-slate-800 rounded-2xl p-12 my-6">
-        <LoadingState label="Buscando informações do veículo e histórico de serviços..." />
+        <LoadingState message="Buscando informações do veículo e histórico de serviços..." />
       </div>
     );
   }
