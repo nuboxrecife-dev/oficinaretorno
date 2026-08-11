@@ -59,15 +59,72 @@ export interface VehicleWithCustomer extends Vehicle {
   customer?: Customer;
 }
 
-export interface ReturnCustomerItem {
+// ==========================================
+// ETAPA 3: CATÁLOGO E REGISTRO DE SERVIÇOS
+// ==========================================
+
+export interface ServiceType {
   id: string;
-  clientName: string;
-  vehicle: string;
-  service: string;
-  nextReturnDate: string;
-  status: 'hoje' | 'em_3_dias' | 'em_4_dias' | 'em_7_dias' | 'atrasado';
-  statusLabel: string;
+  organization_id: string;
+  name: string;
+  description?: string;
+  default_interval_months?: number;
+  default_interval_km?: number;
+  default_price?: number;
+  active: boolean;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export type ReturnStatus =
+  | 'scheduled'
+  | 'due_soon'
+  | 'due'
+  | 'overdue'
+  | 'contacted'
+  | 'booked'
+  | 'completed'
+  | 'cancelled';
+
+export interface ServiceRecord {
+  id: string;
+  organization_id: string;
+  customer_id: string;
+  vehicle_id: string;
+  service_type_id?: string;
+  service_date: string; // YYYY-MM-DD
+  mileage: number;
+  price: number;
+  notes?: string;
+  next_return_date?: string; // YYYY-MM-DD
+  next_return_mileage?: number;
+  return_status?: ReturnStatus;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface ServiceRecordWithDetails extends ServiceRecord {
+  service_type?: ServiceType;
+  customer?: Customer;
+  vehicle?: Vehicle;
+  computed_status?: 'scheduled' | 'due_soon' | 'due' | 'overdue';
+  status_label?: string;
+}
+
+export interface ReturnCustomerItem {
+  id: string; // service_record_id
+  service_record: ServiceRecordWithDetails;
+  customer: Customer;
+  vehicle: Vehicle;
+  service_name: string;
+  last_service_date: string;
+  last_service_mileage: number;
+  next_return_date?: string;
+  next_return_mileage?: number;
+  status: 'scheduled' | 'due_soon' | 'due' | 'overdue';
+  status_label: string;
   phone?: string;
+  whatsapp?: string;
 }
 
 export interface FunnelStage {
@@ -93,3 +150,4 @@ export interface PaginatedResult<T> {
   pageSize: number;
   totalPages: number;
 }
+
