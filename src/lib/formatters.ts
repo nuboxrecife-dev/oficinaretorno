@@ -60,3 +60,13 @@ export function formatDate(dateString?: string): string {
     return dateString;
   }
 }
+
+// Formata valor monetário BRL (ex: 350.5 -> "R$ 350,50")
+export function formatCurrency(value?: number): string {
+  if (value === undefined || value === null || isNaN(value)) return 'R$ 0,00';
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(value);
+}
+
