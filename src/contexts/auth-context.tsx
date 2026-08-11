@@ -9,6 +9,7 @@ interface AuthContextType {
   user: { id: string; email: string } | null;
   profile: Profile | null;
   organization: Organization | null;
+  currentOrganization: Organization | null;
   loading: boolean;
   signIn: (email: string, password?: string) => Promise<{ success: boolean; error?: string }>;
   signUp: (data: {
@@ -294,6 +295,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         user,
         profile,
         organization,
+        currentOrganization: organization,
         loading,
         signIn,
         signUp,
