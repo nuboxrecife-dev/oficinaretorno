@@ -12,6 +12,7 @@ interface ConfirmDeleteDialogProps {
   isBlocked?: boolean;
   blockReason?: string;
   isLoading?: boolean;
+  loading?: boolean;
 }
 
 export function ConfirmDeleteDialog({
@@ -23,7 +24,9 @@ export function ConfirmDeleteDialog({
   isBlocked = false,
   blockReason,
   isLoading = false,
+  loading = false,
 }: ConfirmDeleteDialogProps) {
+  const activeLoading = isLoading || loading;
   if (!isOpen) return null;
 
   return (
@@ -38,13 +41,13 @@ export function ConfirmDeleteDialog({
           </Button>
         ) : (
           <>
-            <Button onClick={onClose} variant="outline" disabled={isLoading}>
+            <Button onClick={onClose} variant="outline" disabled={activeLoading}>
               Cancelar
             </Button>
             <Button
               onClick={onConfirm}
               variant="danger"
-              isLoading={isLoading}
+              isLoading={activeLoading}
               className="font-bold"
             >
               Sim, excluir
